@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     # App Information
     'name': 'Odoo SPSCommerce Connector',

@@ -1,7 +1,4 @@
-# -*- coding: utf-8 -*-
-# See LICENSE file for full copyright and licensing details.
 import base64
-
 from odoo import models, fields
 
 
@@ -40,7 +37,6 @@ class CommonLogBook(models.Model):
         vals = {
             'name': file_name,
             'datas': base64.b64encode(file),
-            'name': file_name,
             'res_model': 'common.log.book.ept',
             'type': 'binary',
             'res_id': job_id.id,

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# See LICENSE file for full copyright and licensing details.
 from odoo import models, fields, api
 
 
@@ -34,14 +32,17 @@ class ResConfig(models.TransientModel):
     sps_commerce_workflow_id = fields.Many2one('sale.workflow.process.ept', string='Auto Workflow Process',
                                                help='Auto Workflow process id')
     sps_commerce_carrier_id = fields.Many2one('delivery.carrier', string='Delivery Carrier',
-                                              help='If order has not any delivery carrier then this carrier will be used.')
+                                              help='If order has not any delivery carrier then '
+                                                   'this carrier will be used.')
     spscommerce_qualifier = fields.Char(string='SPSCommerce Qualifier',
-                                        help='SPSCommerce Qualifier which is provided by SPSCommerce. Maximum 2 Characters.')
+                                        help='SPSCommerce Qualifier which is provided by SPSCommerce. '
+                                             'Maximum 2 Characters.')
     sps_commerce_vendor_qualifier = fields.Char(string='Vendor Qualifier',
-                                                help='Vendor Qualifier which is provided by SPSCommerce. Maximum 2 Characters.')
+                                                help='Vendor Qualifier which is provided by SPSCommerce. '
+                                                     'Maximum 2 Characters.')
     sps_commerce_production_environment = fields.Boolean(string='Connection Type',
-                                                         help='Connection type for communication purpose. '
-                                                              'If testing environment then data will treat as test data.')
+                                                         help='Connection type for communication purpose. If testing '
+                                                              'environment then data will treat as test data.')
     sps_remit_partner_id = fields.Many2one('res.partner', string='Remit Partner',
                                            help='This partner address is used as Remittance Partner to send an invoice '
                                                 'to the SPSCommerce.')

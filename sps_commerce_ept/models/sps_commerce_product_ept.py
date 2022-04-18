@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-# See LICENSE file for full copyright and licensing details.
 from odoo import models, fields
 
 
@@ -20,10 +18,7 @@ class SPSCommerceProduct(models.Model):
 
     def check_sps_product_exist_or_not(self, instance, default_code, sps_commerce_sku, barcode, log_lines):
         """
-
-        :param instance:
-        :param default_code:
-        :return:
+        this is for
         """
         product_obj = self.env['product.product']
         odoo_product = product_obj.search([('default_code', '=', default_code)], limit=1)
@@ -43,8 +38,7 @@ class SPSCommerceProduct(models.Model):
                           'sps_commerce_sku': sps_commerce_sku,
                           'barcode': barcode,
                           }
-                product_id = self.create(values)
-                # .append(product_id.id)
+                self.create(values)
             else:
                 sps_commerce_product.write({'product_id': odoo_product.id})
         return log_lines

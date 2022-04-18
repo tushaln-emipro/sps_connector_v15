@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-# See LICENSE file for full copyright and licensing details.
-# import logging
-
 from odoo import models, fields, api
-# from odoo.addons.ftp_connector_ept.models.sftp_interface import sftp_interface
 
+
+# from odoo.addons.ftp_connector_ept.models.sftp_interface import sftp_interface
 # _logger = logging.getLogger(__name__)
 
 
@@ -47,7 +44,8 @@ class SPSCommerceInstance(models.Model):
     carrier_id = fields.Many2one('delivery.carrier', string='Delivery Carrier',
                                  help='If order has not any delivery carrier then this carrier will be used.')
     spscommerce_qualifier = fields.Char(string='SPSCommerce Qualifier',
-                                        help='SPSCommerce Qualifier which is provided by SPSCommerce. Maximum 2 Characters.')
+                                        help='SPSCommerce Qualifier which is provided by SPSCommerce.'
+                                             'Maximum 2 Characters.')
     vendor_qualifier = fields.Char(string='Vendor Qualifier',
                                    help='Vendor Qualifier which is provided by SPSCommerce. Maximum 2 Characters.')
     is_production_environment = fields.Boolean(string='Connection Type',

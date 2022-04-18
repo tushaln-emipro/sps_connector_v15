@@ -1,15 +1,6 @@
-# -*- coding: utf-8 -*-
-# See LICENSE file for full copyright and licensing details.
-import base64
-import csv
 import logging
-import time
-from datetime import datetime
-from io import StringIO
-from tempfile import NamedTemporaryFile
-
-from odoo import models, api, fields, _
-# from odoo.exceptions import UserError
+from odoo import models, api, fields
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -59,4 +50,15 @@ class SPSCommerceSaleRequisition(models.Model):
     sps_payment_term_reference = fields.Char()
     edi_version = fields.Char()
 
-
+    def import_order_from_sps_commerce(self, instance):
+        """
+        This method is used to import the purchase order from the SPSCommerce.
+        :param instance: SPSCommerce Instance
+        :return: True
+        """
+        ftp_server_id = instance.sftp_connection_id if instance.is_production_environment \
+            else instance.test_sftp_connection_id
+        directory_id = ftp_server_id.default_sps_receive_dir_id
+        if not directory_id:
+            raise UserError("Default download directory is not set in SFTP configuration, Please Set it to import "
+                            "purchase order")
