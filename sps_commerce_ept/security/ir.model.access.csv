@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sps_commerce_instance_ept,access_sps_commerce_instance_ept,model_sps_commerce_instance_ept,,1,1,1,1
+access_sps_commerce_requisition_ept,access_sps_commerce_requisition_ept,model_sps_commerce_requisition_ept,,1,1,1,1
+access_sps_commerce_product_ept,access_sps_commerce_product_ept,model_sps_commerce_product_ept,,1,1,1,1
+access_sps_commerce_import_export_ept,access_sps_commerce_import_export_ept,model_sps_commerce_import_export_ept,,1,1,1,1
+access_spscommerce_config_wizard,access_spscommerce_config_wizard,model_spscommerce_config_wizard,,1,1,1,1

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sps_sale_requisition_sequence" model="ir.sequence">
+        <field name="name">SPSCommerce sale requisition sequence</field>
+        <field name="code">sps.commerce.requisition.ept</field>
+        <field name="prefix">SPS/SALE/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_purchase_acknowledgement" model="ir.sequence">
+        <field name="name">SPS Commerce Purchase Acknowledgement</field>
+        <field name="code">sps.commerce.purchase.acknowledgement</field>
+        <field name="prefix">1</field>
+        <field name="padding">9</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_purchase_acknowledgement_control_sequence" model="ir.sequence">
+        <field name="name">SPS Commerce Purchase Acknowledgement</field>
+        <field name="code">sps.commerce.purchase.acknowledgement.control.sequence</field>
+        <field name="prefix">1</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_advance_shipment_notice" model="ir.sequence">
+        <field name="name">SPS Commerce Advance shipment notice</field>
+        <field name="code">sps.commerce.advance.shipment.notice</field>
+        <field name="prefix">1</field>
+        <field name="padding">9</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_advance_shipment_notice_control_sequence" model="ir.sequence">
+        <field name="name">SPS Commerce Advance shipment notice</field>
+        <field name="code">sps.commerce.advance.shipment.control.sequence</field>
+        <field name="prefix">1</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_invoice_edi" model="ir.sequence">
+        <field name="name">SPS Commerce Invoice EDI</field>
+        <field name="code">sps.commerce.account.invoice</field>
+        <field name="prefix">1</field>
+        <field name="padding">9</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_edi_sps_commerce_invoice_edi_control_sequence" model="ir.sequence">
+        <field name="name">SPS Commerce Invoice EDI</field>
+        <field name="code">sps.commerce.account.invoice.control.number</field>
+        <field name="prefix">1</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sps_commerce_process_import_export_ept" model="ir.ui.view">
+        <field name="name">Process Import/Export</field>
+        <field name="model">sps.commerce.import.export.ept</field>
+        <field name="priority">11</field>
+        <field name="arch" type="xml">
+            <form string="Import/Export">
+                <sheet>
+                    <group name='sps_commerce_instance'>
+                        <group>
+                            <field name='instance_id'
+                                   options="{'no_create':True,'no_create_edit': True,'no_open': True}"
+                                   required="1"/>
+                        </group>
+                        <group>
+                            <field name='operation_type' required="1"/>
+                        </group>
+                    </group>
+                    <group attrs="{'invisible':[('operation_type','!=','sync_product')]}">
+                        <field name="file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="delimiter"/>
+                    </group>
+                    <group attrs="{'invisible':[('operation_type','!=','sync_product')]}">
+                        <button string="Download Sample Attachment"
+                                name="download_sample_attachment" type="object"
+                                class="btn-default"/>
+                    </group>
+                    <footer>
+                        <button string="Execute" class="oe_highlight" type="object"
+                                name="execute"/>
+                        <button string="Cancel" class="oe_highlight" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wizard_sps_commerce_import_export_wizard"
+            model="ir.actions.act_window">
+        <field name="name">SPSCommerce Operations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sps.commerce.import.export.ept</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_sps_commerce_process_import_export_ept"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sps_commerce_processes_ept" groups="sps_commerce_ept.group_sps_commerce_ept_user"
+              parent="sps_commerce_ept.menuitem_sps_commerce_connector"
+              name="Processes" sequence="15"/>
+
+    <menuitem id="menu_sps_commerce_import_export_process_ept" name="Operations"
+              parent="menu_sps_commerce_processes_ept" groups="sps_commerce_ept.group_sps_commerce_ept_user"
+              action="action_wizard_sps_commerce_import_export_wizard" sequence="1"/>
+
+
+</odoo>

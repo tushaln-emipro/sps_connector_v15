@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ir_attachment_import_product_ept" model="ir.attachment">
+        <field name="name">import_product_sample_sps_commerce.csv</field>
+        <field name="datas" type="base64"
+               file="sps_commerce_ept/data/import_product_sample_sps_commerce.csv"/>
+        <field name="res_model">sps.commerce.import.export.ept</field>
+        <field name="public">True</field>
+    </record>
+</odoo>

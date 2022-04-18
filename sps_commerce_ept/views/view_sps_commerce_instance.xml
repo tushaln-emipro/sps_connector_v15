@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sps_commerce_instance_form" model="ir.ui.view">
+        <field name="name">sps.commerce.instance.ept.form</field>
+        <field name="model">sps.commerce.instance.ept</field>
+        <field name="arch" type="xml">
+            <form string="SPSCommerce Instance" create="false">
+                <sheet string="SPSCommerce Instance">
+<!--                    <div class="oe_button_box" name="buttons">-->
+<!--                        <field name="is_production_environment" invisible="1"/>-->
+<!--                        <button attrs="{'invisible': [('is_production_environment', '=', False)]}"-->
+<!--                                class="oe_stat_button" name="toggle_prod_environment_value"-->
+<!--                                type="object" icon="fa-play">-->
+<!--                            <div class="o_stat_info o_form_field">-->
+<!--                                <span class="text-success">Production</span>-->
+<!--                                <span class="o_stat_text">Environment</span>-->
+<!--                            </div>-->
+<!--                        </button>-->
+<!--                        <button attrs="{'invisible': [('is_production_environment', '=', True)]}"-->
+<!--                                class="oe_stat_button" name="toggle_prod_environment_value"-->
+<!--                                type="object" icon="fa-stop">-->
+<!--                            <div class="o_stat_info o_form_field">-->
+<!--                                <span class="o_warning_text">Test</span>-->
+<!--                                <span class="o_stat_text">Environment</span>-->
+<!--                            </div>-->
+<!--                        </button>-->
+<!--                        <button type="object" style="width:16% !important"-->
+<!--                                name="cron_configuration_action"-->
+<!--                                class="oe_stat_button"-->
+<!--                                groups="sps_commerce_ept.group_sps_commerce_ept_manager"-->
+<!--                                icon="fa-spinner" attrs="{'invisible': [('active','=',False)]}">-->
+<!--                            <span class="o_stat_text">Configure Scheduled Actions</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+                    <group>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </group>
+                    <group string="Instance configuration">
+                        <group>
+                            <field name="sps_supplier_id"/>
+                            <field name="spscommerce_qualifier"/>
+                            <field name="vendor_qualifier"/>
+                            <field name="company_id"/>
+                            <field name="remit_partner_id"/>
+                            <field name="warehouse_id"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="global_channel_id"/>
+                            <field name="sales_channel_id"/>
+                            <field name="pricelist_id"/>
+                            <field name="payment_term_id"/>
+                            <field name="workflow_id"/>
+                            <field name="carrier_id"/>
+                            <field name="weight_uom_id"/>
+                        </group>
+                    </group>
+                    <group string="Connection Information">
+                        <group>
+<!--                            <field name="sftp_connection_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>-->
+<!--                            <field name="test_sftp_connection_id"-->
+<!--                                   attrs="{'invisible': [('is_production_environment', '=', True)]}"/>-->
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="sps_commerce_instance_tree" model="ir.ui.view">
+        <field name="name">sps.commerce.instance.ept.tree</field>
+        <field name="model">sps.commerce.instance.ept</field>
+        <field name="arch" type="xml">
+            <tree string="SPSCommerce Instance" create="false">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="sftp_connection_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="sps_commerce_instance_search" model="ir.ui.view">
+        <field name="name">sps.commerce.instance.ept.search</field>
+        <field name="model">sps.commerce.instance.ept</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="sps_commerce_instance_action" model="ir.actions.act_window">
+        <field name="name">SPSCommerce Instance</field>
+        <field name="res_model">sps.commerce.instance.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="sps_commerce_instance_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+
+            </p>
+            <p>
+
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menuitem_sps_commerce_connector" name="SPSCommerce" sequence="100"
+              web_icon="sps_commerce_ept,static/description/icon.png"
+    groups="sps_commerce_ept.group_sps_commerce_ept_user"/>
+
+    <menuitem id="menuitem_sps_commerce_main_configuration" name="Configuration" sequence="20"
+              parent="sps_commerce_ept.menuitem_sps_commerce_connector"
+              groups="sps_commerce_ept.group_sps_commerce_ept_manager"
+              />
+
+    <menuitem id="menuitem_sps_commerce_instance" name="Instance"
+              action="sps_commerce_instance_action"
+              groups="sps_commerce_ept.group_sps_commerce_ept_manager"
+              parent="sps_commerce_ept.menuitem_sps_commerce_main_configuration" sequence="2"/>
+
+</odoo>

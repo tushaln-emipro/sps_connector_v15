@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="sps_commerce_product_tree_view" model="ir.ui.view">
+            <field name="name">sps.commerce.product.ept.tree.view</field>
+            <field name="model">sps.commerce.product.ept</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="product_id"/>
+                    <field name="sps_commerce_sku"/>
+                    <field name="instance_id"/>
+                    <field name="barcode"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Form view of the Amazon product-->
+        <record id="sps_commerce_product_form_view" model="ir.ui.view">
+            <field name="name">sps.commerce.product.ept.form.view</field>
+            <field name="model">sps.commerce.product.ept</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id" readonly="1"/>
+                                <field name="sps_commerce_sku" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="instance_id"/>
+                                <field name="barcode" readonly="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- -search view of amazon product-->
+        <record id="sps_commerce_product_search_view" model="ir.ui.view">
+            <field name="name">sps.commerce.product.ept.search.view</field>
+            <field name="model">sps.commerce.product.ept</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <search string="Search SPSCommerce Product">
+                    <field name="sps_commerce_sku"/>
+                    <field name="instance_id"/>
+                    <field name="barcode"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Vendor" name="instance" domain="[]"
+                                context="{'group_by':'instance_id'}"/>
+                    </group>
+                    <separator/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action view of amazon product-->
+        <record id="sps_commerce_product_ept_view_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sps.commerce.product.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sps_commerce_product_search_view"/>
+        </record>
+
+        <!-- -Menu of amazon product-->
+        <menuitem id="menu_sps_commerce_products" name="Products" groups="sps_commerce_ept.group_sps_commerce_ept_user"
+                  sequence="3" parent="sps_commerce_ept.menuitem_sps_commerce_connector"
+                  action="sps_commerce_product_ept_view_action"/>
+
+
+</odoo>

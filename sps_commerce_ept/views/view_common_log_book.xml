@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="sps_commerce_log_book_ept" model="ir.ui.view">
+            <field name="name">SPSCommerce Log book Form</field>
+            <field name="model">common.log.book.ept</field>
+            <field name="inherit_id"
+                   ref="common_connector_library.action_common_log_book_ept_form"/>
+            <field name="arch" type="xml">
+                <field name="active" position="after">
+                    <field name="sps_commerce_instance_id" readonly="1">
+                    </field>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_common_log_book_ept_sps_commerce_instance" model="ir.actions.act_window">
+            <field name="name">SPSCommerce Common Log Book</field>
+            <field name="res_model">common.log.book.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('module','=','sps_commerce_ept')]</field>
+        </record>
+
+        <menuitem id="sps_commerce_mismatch_details" name="Mismatch Details"
+                  parent="sps_commerce_ept.menu_sps_commerce_processes_ept"
+                  action="sps_commerce_ept.action_common_log_book_ept_sps_commerce_instance"
+                  sequence="2" groups="sps_commerce_ept.group_sps_commerce_ept_user"/>
+
+    </data>
+</odoo>

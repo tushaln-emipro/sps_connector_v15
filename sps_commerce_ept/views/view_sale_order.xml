@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <notebook position="inside">
+                    <page string="SPSCommerce Info"
+                          attrs="{'invisible':[('sps_instance_id','=',False)]}">
+                        <group>
+                            <group>
+                                <field name="sps_instance_id" readonly="1"/>
+                                <field name="sps_requisition_id"/>
+                                <field name="is_sps_commerce_order"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </data>
+        </field>
+    </record>
+
+    <record id="action_sps_commerce_sale_orders" model="ir.actions.act_window">
+        <field name="name">SPSCommerce Orders</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_sps_commerce_order','=',True)]</field>
+        <field name="view_id" ref="sale.view_order_tree"></field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+    </record>
+
+    <!--Quotation Order menuitem-->
+    <menuitem id="menuitem_sps_commerce_orders" name="Sales Orders" groups="sps_commerce_ept.group_sps_commerce_ept_user"
+              parent="sps_commerce_ept.main_menu_sps_commerce_sale_requisition"
+              action="sps_commerce_ept.action_sps_commerce_sale_orders"
+              sequence="2"/>
+</odoo>
