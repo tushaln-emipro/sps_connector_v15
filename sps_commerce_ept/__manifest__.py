@@ -33,6 +33,7 @@
         'views/view_sps_commerce_product.xml',
         'views/view_common_log_book.xml',
         'views/view_sps_sftp_configuration.xml',
+        'views/partner_workflow.xml',
         'wizard/view_sps_commerce_import_export.xml',
         'wizard/view_res_config.xml',
         'wizard/view_sps_commerce_config_wizard.xml',

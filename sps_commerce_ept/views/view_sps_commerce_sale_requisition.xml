@@ -5,40 +5,40 @@
         <field name="model">sps.commerce.requisition.ept</field>
         <field name="arch" type="xml">
             <form string="SPSCommerce Requisition" create="false">
-                <!--                <header>-->
-                <!--                    <button name="create_sale_order" string="Create Sale Order" type="object"-->
-                <!--                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>-->
+                <header>
+                    <button name="create_sale_order" string="Create Sale Order" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
 
-                <!--                    <button name="send_advance_shipment_notice"-->
-                <!--                            string="Send Advance Shipment Notice"-->
-                <!--                            type="object" class="btn-primary"-->
-                <!--                            attrs="{'invisible': ['|',('state', 'not in', ['ack_send',-->
-                <!--                    'processed']),('is_asn_send','=',True)]}"/>-->
+                    <button name="send_advance_shipment_notice"
+                            string="Send Advance Shipment Notice"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': ['|',('state', 'not in', ['ack_send',
+                                    'processed']),('is_asn_send','=',True)]}"/>
 
-                <!--                    <button name="send_invoice_edi_to_sps" class="btn-primary"-->
-                <!--                            string="Send Invoice To SPS"-->
-                <!--                            type="object"-->
-                <!--                            attrs="{'invisible': ['|',('is_invoice_send', '=', True),('state', 'not in', ['processed','asn_send'])]}"/>-->
+                    <button name="send_invoice_edi_to_sps" class="btn-primary"
+                            string="Send Invoice To SPS"
+                            type="object"
+                            attrs="{'invisible': ['|',('is_invoice_send', '=', True),('state', 'not in', ['processed','asn_send'])]}"/>
 
-                <!--                    <button name="sps_requisition_reset_to_draft_ept" class="btn-primary"-->
-                <!--                            string="Reset To Draft" type="object"-->
-                <!--                            attrs="{'invisible': [('state', 'in', ['cancel','done'])]}"/>-->
+                    <button name="sps_requisition_reset_to_draft_ept" class="btn-primary"
+                            string="Reset To Draft" type="object"
+                            attrs="{'invisible': [('state', 'in', ['cancel','done'])]}"/>
 
 
-                <!--                    <field name="state" widget="statusbar"/>-->
-                <!--                </header>-->
+                    <field name="state" widget="statusbar"/>
+                </header>
                 <sheet string="">
-                    <!--                    <div class="oe_button_box" name="button_box">-->
-                    <!--                        <button type="object"-->
-                    <!--                                name="action_view_sps_order"-->
-                    <!--                                class="oe_stat_button"-->
-                    <!--                                icon="fa-first-order"-->
-                    <!--                                attrs="{'invisible': [('order_count', '=', 0)]}"-->
-                    <!--                                groups="base.group_user">-->
-                    <!--                            <field name="order_count" widget="statinfo" string="Orders"/>-->
-                    <!--                        </button>-->
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                                name="action_view_sps_order"
+                                class="oe_stat_button"
+                                icon="fa-first-order"
+                                attrs="{'invisible': [('order_count', '=', 0)]}"
+                                groups="base.group_user">
+                            <field name="order_count" widget="statinfo" string="Orders"/>
+                        </button>
 
-                    <!--                    </div>-->
+                    </div>
                     <group>
                         <h2>
                             <field name="name" readonly="1"/>
@@ -60,51 +60,47 @@
                     </group>
                     <notebook>
                         <page string="Requisition Lines">
-                            <group>
-                                <group>
-<!--                                    <field name="requisition_line_ids" nolabel="1">-->
-<!--                                        <tree editable="top" create="false">-->
-<!--                                            <field name="product_id"/>-->
-<!--                                            <field name="product_uom_qty" readonly="1"/>-->
-<!--                                            <field name="product_ack_qty" string="Ack qty"/>-->
-<!--                                            <field name="backorder_qty" string="Backorder qty"/>-->
-<!--                                            <field name="free_qty"/>-->
-<!--                                            <field name="sps_line_code_type" invisible="1"/>-->
-<!--                                            <field name="sps_line_code" readonly="1"/>-->
-<!--                                            <field name="unit_price"/>-->
-<!--                                            <field name="cost_price" readonly="1"/>-->
-<!--                                            <field name="delivery_date"/>-->
-<!--                                            <field name="max_delivery_date" readonly="1"/>-->
-<!--                                            <field name="order_line_note" invisible="1"/>-->
-<!--                                            <field name="product_availability"/>-->
-<!--                                            <field name="merchandise_type_code" readonly="1"-->
-<!--                                                   invisible="1"/>-->
-<!--                                        </tree>-->
-<!--                                        <form>-->
-<!--                                            <group>-->
-<!--                                                <group>-->
-<!--                                                    <field name="product_id"/>-->
-<!--                                                    <field name="product_uom_qty"/>-->
-<!--                                                    <field name="unit_price"/>-->
-<!--                                                    <field name="cost_price"/>-->
-<!--                                                </group>-->
-<!--                                            </group>-->
-<!--                                            <group>-->
-<!--                                                <group string="Product information">-->
-<!--                                                    <field name="sps_line_code"/>-->
-<!--                                                    <field name="vendor_sku_reference"/>-->
-<!--                                                    <field name="gtin_reference"/>-->
-<!--                                                    <field name="upc_reference"/>-->
-<!--                                                </group>-->
-<!--                                                <group string="Description">-->
-<!--                                                    <field name="order_line_note"/>-->
-<!--                                                    <field name="line_description"/>-->
-<!--                                                </group>-->
-<!--                                            </group>-->
-<!--                                        </form>-->
-<!--                                    </field>-->
-                                </group>
-                            </group>
+                            <field name="requisition_line_ids" nolabel="1">
+                                <tree editable="top" create="false">
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty" readonly="1"/>
+                                    <field name="product_ack_qty" string="Ack qty"/>
+                                    <field name="backorder_qty" string="Backorder qty"/>
+                                    <field name="free_qty"/>
+                                    <field name="sps_line_code_type" invisible="1"/>
+                                    <field name="sps_line_code" readonly="1"/>
+                                    <field name="unit_price"/>
+                                    <field name="cost_price" readonly="1"/>
+                                    <field name="delivery_date"/>
+                                    <field name="max_delivery_date" readonly="1"/>
+                                    <field name="order_line_note" invisible="1"/>
+                                    <field name="product_availability"/>
+                                    <field name="merchandise_type_code" readonly="1"
+                                           invisible="1"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="product_uom_qty"/>
+                                            <field name="unit_price"/>
+                                            <field name="cost_price"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group string="Product information">
+                                            <field name="sps_line_code"/>
+                                            <field name="vendor_sku_reference"/>
+                                            <field name="gtin_reference"/>
+                                            <field name="upc_reference"/>
+                                        </group>
+                                        <group string="Description">
+                                            <field name="order_line_note"/>
+                                            <field name="line_description"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
                         </page>
                         <page string="SPSCommerce information">
                             <group>
@@ -128,11 +124,11 @@
                         </page>
                     </notebook>
                 </sheet>
-                <!--                <div class="oe_chatter">-->
-                <!--                    <field name="message_follower_ids" widget="mail_followers"-->
-                <!--                           groups="base.group_user"/>-->
-                <!--                    <field name="message_ids" widget="mail_thread"/>-->
-                <!--                </div>-->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"
+                           groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
@@ -143,10 +139,10 @@
         <field name="arch" type="xml">
             <tree string="SPSCommerce Requisition">
                 <field name="name"/>
-                <!--                <field name="instance_id"/>-->
-                <!--                <field name="purchase_order_reference"/>-->
-                <!--                <field name="date_order"/>-->
-                <!--                <field name="state"/>-->
+                <field name="instance_id"/>
+                <field name="purchase_order_reference"/>
+                <field name="date_order"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -157,8 +153,8 @@
         <field name="arch" type="xml">
             <search string="">
                 <field name="name"/>
-                <!--                <field name="instance_id"/>-->
-                <!--                <field name="purchase_order_reference"/>-->
+                <field name="instance_id"/>
+                <field name="purchase_order_reference"/>
             </search>
         </field>
     </record>

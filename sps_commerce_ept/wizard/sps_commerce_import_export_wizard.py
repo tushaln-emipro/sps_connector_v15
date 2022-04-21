@@ -42,12 +42,34 @@ class SPSCommerceImportExport(models.TransientModel):
             import order from the directory
             :return: the action of product
         """
-        # stock_picking_obj = self.env['stock.picking']
-        # account_move_obj = self.env['account.move']
         if self.operation_type == 'sync_product':
             self.import_csv_file()
         if self.operation_type == 'import_purchase_order':
             self.env['sps.commerce.requisition.ept'].import_order_from_sps_commerce(self.instance_id)
+        if self.operation_type == 'export_shipment_notice':
+            picking_ids = self.env['stock.picking'].search(
+                [('state', '=', 'done'), ('is_sps_commerce_picking', '=', True),
+                 ('is_sps_asn_send', '=', False),
+                 ('sps_instance_id', '=', self.instance_id.id)])
+            requisition_ids = picking_ids.mapped('sps_requisition_id')
+            if not requisition_ids:
+                _logger.info("There are no Requisitions found for export shipment notice to SPSCommerce")
+            for requisition in requisition_ids:
+                requisition.send_advance_shipment_notice()
+        if self.operation_type == 'export_invoice':
+            invoice_ids = self.env['account.move'].search([('invoice_payment_state', 'in', ['open', 'paid']),
+                                                           ('is_sps_commerce_invoice', '=', True),
+                                                           ('is_sps_invoice_send', '=', False),
+                                                           ('sps_instance_id', '=', self.instance_id.id)])
+            requisition_ids = invoice_ids.mapped('sps_requisition_id')
+            if not requisition_ids:
+                _logger.info("There are no Requisitions found for export invoice to the SPSCommerce")
+            for requisition in requisition_ids:
+                requisition.send_invoice_edi_to_sps()
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
 
     def import_csv_file(self):
         """
@@ -55,10 +77,8 @@ class SPSCommerceImportExport(models.TransientModel):
         :return:
         """
         if self.file and self.instance_id and self._get_file_type(self.file_name):
-            # product_obj = self.env['product.product']
             sps_commerce_product_obj = self.env['sps.commerce.product.ept']
             common_log_book_obj = self.env['common.log.book.ept']
-
             csv_file = StringIO(base64.b64decode(self.file).decode())
             file_write = open('/tmp/products.csv', 'w+')
             file_write.writelines(csv_file.getvalue())
